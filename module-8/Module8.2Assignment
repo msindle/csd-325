@@ -1,0 +1,43 @@
+import json
+
+
+# Function to print student list
+def print_students(student_list):
+    for s in student_list:
+        print(f"{s['L_Name']}, {s['F_Name']} : ID = {s['Student_ID']} , Email = {s['Email']}")
+    print()  # blank line for readability
+
+
+
+# Main Program
+def main():
+    # Load JSON file into a Python list
+    with open("Student.json", "r") as file:
+        students = json.load(file)
+
+    print("=== Original Student List ===")
+    print_students(students)
+
+    #Adding my information
+    new_student = {
+        "F_Name": "Michael",
+        "L_Name": "Sindle",
+        "Student_ID": 21289822,
+        "Email": "msindle@my365.bellevue.edu"
+    }
+
+    students.append(new_student)
+
+    print("=== Updated Student List ===")
+    print_students(students)
+
+    # Write updated list back to JSON file
+    with open("Student.json", "w") as file:
+        json.dump(students, file, indent=4)
+
+    print("Student.json file has been updated.")
+
+
+# Run the program
+if __name__ == "__main__":
+    main()
